@@ -8,6 +8,7 @@ RUN apk add --no-cache \
       cmake \
       make \
       gcc \
+      g++ \
       musl-dev \
       valgrind \
       clang-extra-tools \
