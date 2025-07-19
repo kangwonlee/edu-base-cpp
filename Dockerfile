@@ -25,6 +25,8 @@ RUN uv pip install --system --requirement /app/temp/requirements.txt \
 
 USER runner
 
+RUN python3 -c "import pytest; import requests; import pycparser"
+
 WORKDIR /tests/
 
 
