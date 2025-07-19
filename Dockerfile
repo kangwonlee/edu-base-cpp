@@ -23,7 +23,16 @@ RUN uv pip install --system --requirement /app/temp/requirements.txt \
     && rm -rf /app/temp \
     && chown -R runner:runner /app/ai_tutor/
 
+COPY ./requirements.txt /app/requirements.txt
+
+RUN uv pip install --system --requirement /app/requirements.txt \
+    && rm /app/requirements.txt
+
 USER runner
+
+RUN uv pip list \
+    && clang-format --version \
+    && python3 -c "import pytest; import requests; import clang.cindex"
 
 WORKDIR /tests/
 
