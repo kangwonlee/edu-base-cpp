@@ -23,9 +23,15 @@ RUN uv pip install --system --requirement /app/temp/requirements.txt \
     && rm -rf /app/temp \
     && chown -R runner:runner /app/ai_tutor/
 
+COPY requirement.txt /app/requirements.txt
+
+RUN uv pip install --system --requirement /app/requirements.txt \
+    && rm /app/requirements.txt
+
 USER runner
 
-RUN python3 -c "import pytest; import requests; import pycparser"
+RUN uv pip list \
+    && python3 -c "import pytest; import requests; import pycparser"
 
 WORKDIR /tests/
 
