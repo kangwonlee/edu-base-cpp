@@ -4,11 +4,11 @@ FROM ghcr.io/kangwonlee/edu-base-raw:14e3e21
 
 USER root
 
+# Keep `musl-dev` for C headers (needed for Clang too)
+# `valgrind` is optional: Remove if not used in tests (saves ~10-20 MiB)
 RUN apk add --no-cache \
       cmake \
       make \
-      gcc \
-      g++ \
       musl-dev \
       valgrind \
       clang-extra-tools \
